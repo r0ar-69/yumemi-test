@@ -10,45 +10,42 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
-    @IBOutlet weak var ImgView: UIImageView!
+    @IBOutlet weak var imgView: UIImageView!
+    @IBOutlet weak var titleLbl: UILabel!
+    @IBOutlet weak var languageLbl: UILabel!
+    @IBOutlet weak var starsLbl: UILabel!
+    @IBOutlet weak var watchersLbl: UILabel!
+    @IBOutlet weak var forksLbl: UILabel!
+    @IBOutlet weak var issuesLbl: UILabel!
     
-    @IBOutlet weak var TtlLbl: UILabel!
-    
-    @IBOutlet weak var LangLbl: UILabel!
-    
-    @IBOutlet weak var StrsLbl: UILabel!
-    @IBOutlet weak var WchsLbl: UILabel!
-    @IBOutlet weak var FrksLbl: UILabel!
-    @IBOutlet weak var IsssLbl: UILabel!
-    
-    var vc1: SearchViewController!
+    var searchVC: SearchViewController!
         
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let repo = vc1.repo[vc1.idx]
+        let repo = searchVC.repoArr[searchVC.idx]
         
-        LangLbl.text = "Written in \(repo["language"] as? String ?? "")"
-        StrsLbl.text = "\(repo["stargazers_count"] as? Int ?? 0) stars"
-        WchsLbl.text = "\(repo["wachers_count"] as? Int ?? 0) watchers"
-        FrksLbl.text = "\(repo["forks_count"] as? Int ?? 0) forks"
-        IsssLbl.text = "\(repo["open_issues_count"] as? Int ?? 0) open issues"
+        languageLbl.text = "Written in \(repo["language"] as? String ?? "")"
+        starsLbl.text = "\(repo["stargazers_count"] as? Int ?? 0) stars"
+        watchersLbl.text = "\(repo["wachers_count"] as? Int ?? 0) watchers"
+        forksLbl.text = "\(repo["forks_count"] as? Int ?? 0) forks"
+        issuesLbl.text = "\(repo["open_issues_count"] as? Int ?? 0) open issues"
         getImage()
         
     }
     
     func getImage(){
         
-        let repo = vc1.repo[vc1.idx]
+        let repo = searchVC.repoArr[searchVC.idx]
         
-        TtlLbl.text = repo["full_name"] as? String
+        titleLbl.text = repo["full_name"] as? String
         
         if let owner = repo["owner"] as? [String: Any] {
             if let imgURL = owner["avatar_url"] as? String {
                 URLSession.shared.dataTask(with: URL(string: imgURL)!) { (data, res, err) in
                     let img = UIImage(data: data!)!
                     DispatchQueue.main.async {
-                        self.ImgView.image = img
+                        self.imgView.image = img
                     }
                 }.resume()
             }
