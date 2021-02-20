@@ -9,7 +9,6 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-    
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var languageLbl: UILabel!
@@ -19,7 +18,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var issuesLbl: UILabel!
     
     var searchVC: SearchViewController!
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,11 +30,9 @@ class DetailViewController: UIViewController {
         forksLbl.text = "\(repo["forks_count"] as? Int ?? 0) forks"
         issuesLbl.text = "\(repo["open_issues_count"] as? Int ?? 0) open issues"
         getImage()
-        
     }
     
     func getImage(){
-        
         let repo = searchVC.repoArr[searchVC.idx]
         
         titleLbl.text = repo["full_name"] as? String
@@ -50,7 +47,5 @@ class DetailViewController: UIViewController {
                 }.resume()
             }
         }
-        
     }
-    
 }

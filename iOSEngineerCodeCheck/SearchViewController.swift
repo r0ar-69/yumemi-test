@@ -9,7 +9,6 @@
 import UIKit
 
 class SearchViewController: UITableViewController, UISearchBarDelegate {
-    
     @IBOutlet weak var searchBar: UISearchBar!
     
     var repoArr: [[String: Any]]=[]
@@ -34,7 +33,6 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
         searchText = searchBar.text!
         
         if searchText.count != 0 {
@@ -52,16 +50,13 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
             // タスクを開始する
             task?.resume()
         }
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == "Detail"{
+        if segue.identifier == R.segue.searchViewController.toDetail.identifier{
             let detailVC = segue.destination as! DetailViewController
             detailVC.searchVC = self
         }
-        
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -69,21 +64,17 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = UITableViewCell()
         let repo = repoArr[indexPath.row]
         cell.textLabel?.text = repo["full_name"] as? String ?? ""
         cell.detailTextLabel?.text = repo["language"] as? String ?? ""
         cell.tag = indexPath.row
         return cell
-        
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // セルをタップした時に呼ばれる
         idx = indexPath.row
-        performSegue(withIdentifier: "Detail", sender: self)
-        
+        performSegue(withIdentifier: R.segue.searchViewController.toDetail.identifier, sender: self)
     }
-    
 }
