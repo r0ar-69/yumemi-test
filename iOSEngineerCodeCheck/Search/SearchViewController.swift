@@ -52,13 +52,6 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == R.segue.searchViewController.toDetail.identifier{
-            let detailVC = segue.destination as! DetailViewController
-            detailVC.searchVC = self
-        }
-    }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return repositories.count
     }
@@ -75,7 +68,9 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // セルをタップした時に呼ばれる
-        idx = indexPath.row
-        performSegue(withIdentifier: R.segue.searchViewController.toDetail.identifier, sender: self)
+        let nextVC = R.storyboard.detail.instantiateInitialViewController()!
+        nextVC.repository = repositories[indexPath.row]
+        self.navigationController?.present(nextVC, animated: true, completion: nil)
+        
     }
 }

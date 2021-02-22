@@ -17,12 +17,13 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var forksLbl: UILabel!
     @IBOutlet weak var issuesLbl: UILabel!
     
-    var searchVC: SearchViewController!
+    var repository: Repo?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let repo = searchVC.repositories[searchVC.idx]
+        let repo = repository!
         
         if let language = repo.language {
             languageLbl.text = "Written in \(language)"
@@ -37,7 +38,7 @@ class DetailViewController: UIViewController {
     }
     
     func getImage(){
-        let repo = searchVC.repositories[searchVC.idx]
+        let repo = repository!
         
         fullNameLbl.text = repo.fullName
         

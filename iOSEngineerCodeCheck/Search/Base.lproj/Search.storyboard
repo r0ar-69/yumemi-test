@@ -55,22 +55,11 @@
                     <navigationItem key="navigationItem" title="Root View Controller" id="ktq-eC-ZBq"/>
                     <connections>
                         <outlet property="searchBar" destination="6rq-CD-Hob" id="fFc-fz-DnY"/>
-                        <segue destination="C6E-Lm-M6f" kind="show" identifier="toDetail" id="Vdi-15-Hyn"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xer-fe-JeW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-498" y="137"/>
-        </scene>
-        <!--Detail-->
-        <scene sceneID="vDT-K4-vnV">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Detail" id="C6E-Lm-M6f" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="mSa-zB-w50"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jmN-M7-0xD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="357" y="181"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hWi-qa-NBR">
