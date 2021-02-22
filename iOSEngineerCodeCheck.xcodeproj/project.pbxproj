@@ -99,6 +99,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		24A3F6FD25E3F4FE0055A6E2 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				BFD945E4244DC5E80012785A /* Search.storyboard */,
+				BFD945E2244DC5E80012785A /* SearchViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		24A3F6FE25E3F5080055A6E2 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				24A3F6D925E3EE0D0055A6E2 /* Detail.storyboard */,
+				BF0A658C244F2A3B00280FA6 /* DetailViewController.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
 		2678495A3CD61DBAE007B4BF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -147,11 +165,9 @@
 		BFD945DD244DC5E80012785A /* iOSEngineerCodeCheck */ = {
 			isa = PBXGroup;
 			children = (
+				24A3F6FE25E3F5080055A6E2 /* Detail */,
+				24A3F6FD25E3F4FE0055A6E2 /* Search */,
 				241F220125DF7B21004AD6A0 /* R.generated.swift */,
-				24A3F6D925E3EE0D0055A6E2 /* Detail.storyboard */,
-				BF0A658C244F2A3B00280FA6 /* DetailViewController.swift */,
-				BFD945E4244DC5E80012785A /* Search.storyboard */,
-				BFD945E2244DC5E80012785A /* SearchViewController.swift */,
 				BFD945DE244DC5E80012785A /* AppDelegate.swift */,
 				BFD945E0244DC5E80012785A /* SceneDelegate.swift */,
 				24A3F6CA25E359C50055A6E2 /* RepoModel.swift */,
