@@ -10,7 +10,7 @@ import UIKit
 
 class DetailViewController: UIViewController {
     @IBOutlet weak var imgView: UIImageView!
-    @IBOutlet weak var titleLbl: UILabel!
+    @IBOutlet weak var fullNameLbl: UILabel!
     @IBOutlet weak var languageLbl: UILabel!
     @IBOutlet weak var starsLbl: UILabel!
     @IBOutlet weak var watchersLbl: UILabel!
@@ -35,7 +35,7 @@ class DetailViewController: UIViewController {
     func getImage(){
         let repo = searchVC.repositories[searchVC.idx]
         
-        titleLbl.text = repo.fullName
+        fullNameLbl.text = repo.fullName
         
         let owner = repo.owner
         let imgURL = owner.avatarUrl
