@@ -22,30 +22,29 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let repo = searchVC.repoArr[searchVC.idx]
+        let repo = searchVC.repositories[searchVC.idx]
         
-        languageLbl.text = "Written in \(repo["language"] as? String ?? "")"
-        starsLbl.text = "\(repo["stargazers_count"] as? Int ?? 0) stars"
-        watchersLbl.text = "\(repo["wachers_count"] as? Int ?? 0) watchers"
-        forksLbl.text = "\(repo["forks_count"] as? Int ?? 0) forks"
-        issuesLbl.text = "\(repo["open_issues_count"] as? Int ?? 0) open issues"
+        languageLbl.text = "Written in \(repo.language)"
+        starsLbl.text = "\(repo.stargazersCount) stars"
+        watchersLbl.text = "\(repo.watchersCount) watchers"
+        forksLbl.text = "\(repo.forksCount) forks"
+        issuesLbl.text = "\(repo.openIssuesCount) open issues"
         getImage()
     }
     
     func getImage(){
-        let repo = searchVC.repoArr[searchVC.idx]
+        let repo = searchVC.repositories[searchVC.idx]
         
-        titleLbl.text = repo["full_name"] as? String
+        titleLbl.text = repo.fullName
         
-        if let owner = repo["owner"] as? [String: Any] {
-            if let imgURL = owner["avatar_url"] as? String {
-                URLSession.shared.dataTask(with: URL(string: imgURL)!) { (data, res, err) in
-                    let img = UIImage(data: data!)!
-                    DispatchQueue.main.async {
-                        self.imgView.image = img
-                    }
-                }.resume()
+        let owner = repo.owner
+        let imgURL = owner.avatarUrl
+        URLSession.shared.dataTask(with: URL(string: imgURL)!) { (data, res, err) in
+            let img = UIImage(data: data!)!
+            DispatchQueue.main.async {
+                self.imgView.image = img
             }
-        }
+        }.resume()
+        
     }
 }
