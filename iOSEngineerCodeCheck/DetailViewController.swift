@@ -10,7 +10,7 @@ import UIKit
 
 class DetailViewController: UIViewController {
     @IBOutlet weak var imgView: UIImageView!
-    @IBOutlet weak var titleLbl: UILabel!
+    @IBOutlet weak var fullNameLbl: UILabel!
     @IBOutlet weak var languageLbl: UILabel!
     @IBOutlet weak var starsLbl: UILabel!
     @IBOutlet weak var watchersLbl: UILabel!
@@ -24,7 +24,11 @@ class DetailViewController: UIViewController {
         
         let repo = searchVC.repositories[searchVC.idx]
         
-        languageLbl.text = "Written in \(repo.language)"
+        if let language = repo.language {
+            languageLbl.text = "Written in \(language)"
+        } else {
+            languageLbl.text = ""
+        }
         starsLbl.text = "\(repo.stargazersCount) stars"
         watchersLbl.text = "\(repo.watchersCount) watchers"
         forksLbl.text = "\(repo.forksCount) forks"
@@ -35,7 +39,7 @@ class DetailViewController: UIViewController {
     func getImage(){
         let repo = searchVC.repositories[searchVC.idx]
         
-        titleLbl.text = repo.fullName
+        fullNameLbl.text = repo.fullName
         
         let owner = repo.owner
         let imgURL = owner.avatarUrl
