@@ -43,7 +43,6 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
                     self.repositories = obj.repos
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
-                        print(self.repositories)
                     }
                 }
             }
@@ -68,7 +67,6 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         cell.textLabel?.text = repo.name
         cell.detailTextLabel?.text = repo.language
         cell.tag = indexPath.row
-        print("dsfhsaidhfasjodhfjsdhnf sdiovjis")
         
         return cell
     }
