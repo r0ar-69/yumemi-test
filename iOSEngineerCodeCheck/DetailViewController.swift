@@ -24,7 +24,11 @@ class DetailViewController: UIViewController {
         
         let repo = searchVC.repositories[searchVC.idx]
         
-        languageLbl.text = "Written in \(repo.language)"
+        if let language = repo.language {
+            languageLbl.text = "Written in \(language)"
+        } else {
+            languageLbl.text = ""
+        }
         starsLbl.text = "\(repo.stargazersCount) stars"
         watchersLbl.text = "\(repo.watchersCount) watchers"
         forksLbl.text = "\(repo.forksCount) forks"
