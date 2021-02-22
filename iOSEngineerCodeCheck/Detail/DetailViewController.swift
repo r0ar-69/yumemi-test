@@ -17,14 +17,16 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var forksLbl: UILabel!
     @IBOutlet weak var issuesLbl: UILabel!
     
-    var repository: Repo?
-    
+    internal var repository: Repo?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let repo = repository!
-        
+        setup(repo: repository!)
+        getImage(repo: repository!)
+    }
+    
+    private func setup(repo: Repo) {
         if let language = repo.language {
             languageLbl.text = "Written in \(language)"
         } else {
@@ -34,16 +36,13 @@ class DetailViewController: UIViewController {
         watchersLbl.text = "\(repo.watchersCount) watchers"
         forksLbl.text = "\(repo.forksCount) forks"
         issuesLbl.text = "\(repo.openIssuesCount) open issues"
-        getImage()
+        fullNameLbl.text = repo.fullName
     }
     
-    func getImage(){
-        let repo = repository!
-        
-        fullNameLbl.text = repo.fullName
-        
+    private func getImage(repo: Repo){
         let owner = repo.owner
         let imgURL = owner.avatarUrl
+        
         URLSession.shared.dataTask(with: URL(string: imgURL)!) { (data, res, err) in
             let img = UIImage(data: data!)!
             DispatchQueue.main.async {
