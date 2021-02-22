@@ -8,8 +8,15 @@
 
 import Foundation
 
+struct Items: Codable {
+    let repos: [Repo]
+    
+    enum CodingKeys: String, CodingKey {
+        case repos = "items"
+    }
+}
+
 struct Repo: Codable {
-    let id: Int
     let name: String
     let fullName: String
     let language: String?
@@ -24,7 +31,6 @@ struct Repo: Codable {
     let owner: Owner
     
     private enum CodingKeys: String, CodingKey {
-        case id
         case name
         case fullName = "full_name"
         case language

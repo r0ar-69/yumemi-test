@@ -49,8 +49,8 @@
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="MOh-CZ-3ki" id="mX7-Ab-ERr"/>
-                            <outlet property="delegate" destination="MOh-CZ-3ki" id="A6Y-Dm-cjQ"/>
+                            <outlet property="dataSource" destination="MOh-CZ-3ki" id="DjJ-Q0-4Fd"/>
+                            <outlet property="delegate" destination="MOh-CZ-3ki" id="CgW-Xw-A1A"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Root View Controller" id="ktq-eC-ZBq"/>

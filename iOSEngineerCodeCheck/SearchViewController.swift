@@ -11,14 +11,14 @@ import UIKit
 class SearchViewController: UITableViewController, UISearchBarDelegate {
     @IBOutlet weak var searchBar: UISearchBar!
     
-    var repoArr: [[String: Any]]=[]
+    var repositories:[Repo] = []
     var task: URLSessionTask?
     var searchText: String!
-    var url: String!
     var idx: Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         searchBar.text = "GitHubのリポジトリを検索できるよー"
         searchBar.delegate = self
     }
@@ -36,18 +36,17 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         searchText = searchBar.text!
         
         if searchText.count != 0 {
-            url = "https://api.github.com/search/repositories?q=\(searchText!)"
-            task = URLSession.shared.dataTask(with: URL(string: url)!) { (json, res, err) in
-                if let obj = try! JSONSerialization.jsonObject(with: json!) as? [String: Any] {
-                    if let items = obj["items"] as? [[String: Any]] {
-                        self.repoArr = items
-                        DispatchQueue.main.async {
-                            self.tableView.reloadData()
-                        }
+            let url: URL! = URL(string: "https://api.github.com/search/repositories?q=\(searchText!)")
+            
+            task = URLSession.shared.dataTask(with: url) { (json, res, err) in
+                if let obj = try? JSONDecoder().decode(Items.self, from: json!){
+                    self.repositories = obj.repos
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                        print(self.repositories)
                     }
                 }
             }
-            // タスクを開始する
             task?.resume()
         }
     }
@@ -60,15 +59,16 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return repoArr.count
+        return repositories.count
     }
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        let repo = repoArr[indexPath.row]
-        cell.textLabel?.text = repo["full_name"] as? String ?? ""
-        cell.detailTextLabel?.text = repo["language"] as? String ?? ""
+        let repo:Repo = repositories[indexPath.row]
+        cell.textLabel?.text = repo.name
+        cell.detailTextLabel?.text = repo.language
         cell.tag = indexPath.row
+        print("dsfhsaidhfasjodhfjsdhnf sdiovjis")
+        
         return cell
     }
     
