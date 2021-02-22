@@ -11,10 +11,10 @@ import UIKit
 class SearchViewController: UITableViewController, UISearchBarDelegate {
     @IBOutlet weak var searchBar: UISearchBar!
     
-    var repositories:[Repo] = []
+    var repositories: [Repo] = []
     var task: URLSessionTask?
-    var searchText: String!
-    var idx: Int!
+    var searchText: String = ""
+    var idx: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,17 +36,19 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         searchText = searchBar.text!
         
         if searchText.count != 0 {
-            let url: URL! = URL(string: "https://api.github.com/search/repositories?q=\(searchText!)")
-            
-            task = URLSession.shared.dataTask(with: url) { (json, res, err) in
-                if let obj = try? JSONDecoder().decode(Items.self, from: json!){
-                    self.repositories = obj.repos
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
+            if let url = URL(string: "https://api.github.com/search/repositories?q=\(searchText)") {
+                task = URLSession.shared.dataTask(with: url) { (json, res, err) in
+                    if let obj = try? JSONDecoder().decode(Items.self, from: json!){
+                        self.repositories = obj.repos
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
                     }
                 }
+                task?.resume()
+            } else{
+                print("URL Error!!")
             }
-            task?.resume()
         }
     }
     
