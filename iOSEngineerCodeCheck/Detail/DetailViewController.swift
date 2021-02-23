@@ -41,14 +41,19 @@ class DetailViewController: UIViewController {
     
     private func getImage(repo: Repo){
         let owner = repo.owner
-        let imgURL = owner.avatarUrl
-        
-        URLSession.shared.dataTask(with: URL(string: imgURL)!) { (data, res, err) in
-            let img = UIImage(data: data!)!
-            DispatchQueue.main.async {
-                self.imgView.image = img
-            }
-        }.resume()
-        
+        if let imgURL = URL(string: owner.avatarUrl) {
+            URLSession.shared.dataTask(with: imgURL) { (data, res, err) in
+                if (data != nil || (UIImage(data: data!) != nil)) {
+                    let img = UIImage(data: data!)!
+                    DispatchQueue.main.async {
+                        self.imgView.image = img
+                    }
+                } else {
+                    print(err)
+                }
+            }.resume()
+        } else{
+            print("URL Error!!")
+        }
     }
 }
