@@ -99,8 +99,12 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="descriptionLbl" destination="52x-vr-9QW" id="ZOk-Rl-8hv"/>
+                <outlet property="fullNameLbl" destination="n4j-fW-GST" id="Cze-4e-zkc"/>
                 <outlet property="iconLbl" destination="Hur-fC-JXv" id="Us3-Ji-XF5"/>
                 <outlet property="languageIconLbl" destination="MMR-tp-WeL" id="LtD-fc-aM7"/>
+                <outlet property="languageLbl" destination="0Eb-DA-xfp" id="Q45-Hl-oxu"/>
+                <outlet property="starCountLbl" destination="PLB-aN-acZ" id="IQb-Mo-yzr"/>
                 <outlet property="starIconLbl" destination="qOF-ct-E1R" id="NzE-WW-Sxk"/>
             </connections>
             <point key="canvasLocation" x="-43" y="-12"/>

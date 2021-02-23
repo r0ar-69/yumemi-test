@@ -13,6 +13,10 @@ class RepositoryCell: UITableViewCell {
     @IBOutlet weak var iconLbl: UILabel!
     @IBOutlet weak var starIconLbl: UILabel!
     @IBOutlet weak var languageIconLbl: UILabel!
+    @IBOutlet weak var fullNameLbl: UILabel!
+    @IBOutlet weak var descriptionLbl: UILabel!
+    @IBOutlet weak var starCountLbl: UILabel!
+    @IBOutlet weak var languageLbl: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,6 +30,11 @@ class RepositoryCell: UITableViewCell {
         starIconLbl.text = String.fontOcticon("star")
         languageIconLbl.font = UIFont.icon(from: .fontAwesome5Solid, ofSize: 10)
         languageIconLbl.text = String.fontAwesome5Icon("circle")
+        
+        fullNameLbl.text = repo.fullName
+        descriptionLbl.text = repo.description
+        starCountLbl.text = String(repo.stargazersCount)
+        languageLbl.text = repo.language
         
     }
 
