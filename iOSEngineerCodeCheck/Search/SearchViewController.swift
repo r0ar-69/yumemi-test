@@ -19,6 +19,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         tableView.register(R.nib.repositoryCell)
         searchBar.delegate = self
     }

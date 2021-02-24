@@ -13,7 +13,7 @@
 		24A3F71B25E523A50055A6E2 /* RepositoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A3F71925E523A50055A6E2 /* RepositoryCell.swift */; };
 		24A3F71C25E523A50055A6E2 /* RepositoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24A3F71A25E523A50055A6E2 /* RepositoryCell.xib */; };
 		24AF2A1F25E53504003AA88C /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF2A1E25E53504003AA88C /* R.generated.swift */; };
-		24AF2A4B25E55EC1003AA88C /* colors.json in Resources */ = {isa = PBXBuildFile; fileRef = 24AF2A4A25E55EC1003AA88C /* colors.json */; };
+		24AF2A4B25E55EC1003AA88C /* GitHubColors.json in Resources */ = {isa = PBXBuildFile; fileRef = 24AF2A4A25E55EC1003AA88C /* GitHubColors.json */; };
 		24AF2A5025E5F066003AA88C /* GitHubColorsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AF2A4F25E5F066003AA88C /* GitHubColorsModel.swift */; };
 		6716125B8F4B08D89257E706 /* Pods_iOSEngineerCodeCheck_iOSEngineerCodeCheckUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A36FA7946A78FAB27E5D0A27 /* Pods_iOSEngineerCodeCheck_iOSEngineerCodeCheckUITests.framework */; };
 		AE96A7DB475EE137CAFFB3FD /* Pods_iOSEngineerCodeCheckTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8305285CCB8510D1D3249FE3 /* Pods_iOSEngineerCodeCheckTests.framework */; };
@@ -52,7 +52,7 @@
 		24A3F71925E523A50055A6E2 /* RepositoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryCell.swift; sourceTree = "<group>"; };
 		24A3F71A25E523A50055A6E2 /* RepositoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoryCell.xib; sourceTree = "<group>"; };
 		24AF2A1E25E53504003AA88C /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
-		24AF2A4A25E55EC1003AA88C /* colors.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = colors.json; sourceTree = "<group>"; };
+		24AF2A4A25E55EC1003AA88C /* GitHubColors.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GitHubColors.json; sourceTree = "<group>"; };
 		24AF2A4F25E5F066003AA88C /* GitHubColorsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubColorsModel.swift; sourceTree = "<group>"; };
 		2A67D5908DC1A6E7C241096A /* Pods-iOSEngineerCodeCheck-iOSEngineerCodeCheckUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSEngineerCodeCheck-iOSEngineerCodeCheckUITests.debug.xcconfig"; path = "Target Support Files/Pods-iOSEngineerCodeCheck-iOSEngineerCodeCheckUITests/Pods-iOSEngineerCodeCheck-iOSEngineerCodeCheckUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		440437E1E1045DA60602FCF0 /* Pods-iOSEngineerCodeCheck-iOSEngineerCodeCheckUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSEngineerCodeCheck-iOSEngineerCodeCheckUITests.release.xcconfig"; path = "Target Support Files/Pods-iOSEngineerCodeCheck-iOSEngineerCodeCheckUITests/Pods-iOSEngineerCodeCheck-iOSEngineerCodeCheckUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -184,7 +184,7 @@
 				BFD945EC244DC5EB0012785A /* Info.plist */,
 				24A3F71925E523A50055A6E2 /* RepositoryCell.swift */,
 				24A3F71A25E523A50055A6E2 /* RepositoryCell.xib */,
-				24AF2A4A25E55EC1003AA88C /* colors.json */,
+				24AF2A4A25E55EC1003AA88C /* GitHubColors.json */,
 				24AF2A4F25E5F066003AA88C /* GitHubColorsModel.swift */,
 			);
 			path = iOSEngineerCodeCheck;
@@ -321,7 +321,7 @@
 				BFD945EB244DC5EB0012785A /* LaunchScreen.storyboard in Resources */,
 				BFD945E8244DC5EB0012785A /* Assets.xcassets in Resources */,
 				BFD945E6244DC5E80012785A /* Search.storyboard in Resources */,
-				24AF2A4B25E55EC1003AA88C /* colors.json in Resources */,
+				24AF2A4B25E55EC1003AA88C /* GitHubColors.json in Resources */,
 				24A3F71C25E523A50055A6E2 /* RepositoryCell.xib in Resources */,
 				24A3F6DA25E3EE0D0055A6E2 /* Detail.storyboard in Resources */,
 			);
