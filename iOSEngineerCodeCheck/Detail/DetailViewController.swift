@@ -48,7 +48,6 @@ class DetailViewController: UIViewController {
         } else {
             descriptionLbl.text = "Descripsion is not exist"
         }
-        
         starsLbl.text = "\(repo.stargazersCount) stars"
         watchersLbl.text = "\(repo.watchersCount) watchers"
         forksLbl.text = "\(repo.forksCount) forks"
