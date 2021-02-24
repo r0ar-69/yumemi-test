@@ -22,6 +22,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var forksIconLbl: UILabel!
     @IBOutlet weak var issuesIconLbl: UILabel!
     @IBOutlet weak var descriptionLbl: UILabel!
+    @IBOutlet weak var decorationLbl: UILabel! // text is "Writtn In"
     
     internal var repository: Repo?
     
@@ -35,7 +36,9 @@ class DetailViewController: UIViewController {
     private func setup(repo: Repo) {
         if let language = repo.language {
             languageLbl.text = language
+            languageLbl.textColor = UIColor.hex(string: repo.gitHubColor!, alpha: 1)
         } else {
+            decorationLbl.isHidden = true
             languageLbl.text = ""
         }
         descriptionLbl.text = repo.description
