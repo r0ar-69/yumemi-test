@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftIconFont
 
 class DetailViewController: UIViewController {
     @IBOutlet weak var imgView: UIImageView!
@@ -16,6 +17,11 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var watchersLbl: UILabel!
     @IBOutlet weak var forksLbl: UILabel!
     @IBOutlet weak var issuesLbl: UILabel!
+    @IBOutlet weak var starIconLbl: UILabel!
+    @IBOutlet weak var watchersIconLbl: UILabel!
+    @IBOutlet weak var forksIconLbl: UILabel!
+    @IBOutlet weak var issuesIconLbl: UILabel!
+    @IBOutlet weak var descriptionLbl: UILabel!
     
     internal var repository: Repo?
     
@@ -28,15 +34,24 @@ class DetailViewController: UIViewController {
     
     private func setup(repo: Repo) {
         if let language = repo.language {
-            languageLbl.text = "Written in \(language)"
+            languageLbl.text = language
         } else {
             languageLbl.text = ""
         }
+        descriptionLbl.text = repo.description
         starsLbl.text = "\(repo.stargazersCount) stars"
         watchersLbl.text = "\(repo.watchersCount) watchers"
         forksLbl.text = "\(repo.forksCount) forks"
         issuesLbl.text = "\(repo.openIssuesCount) open issues"
         fullNameLbl.text = repo.fullName
+        starIconLbl.font = UIFont.icon(from: .octicon, ofSize: 18)
+        starIconLbl.text = String.fontOcticon("star")
+        watchersIconLbl.font = UIFont.icon(from: .octicon, ofSize: 18)
+        watchersIconLbl.text = String.fontOcticon("eye")
+        forksIconLbl.font = UIFont.icon(from: .octicon, ofSize: 18)
+        forksIconLbl.text = String.fontOcticon("repo-forked")
+        issuesIconLbl.font = UIFont.icon(from: .octicon, ofSize: 18)
+        issuesIconLbl.text = String.fontOcticon("issue-opened")
     }
     
     private func getImage(repo: Repo){
