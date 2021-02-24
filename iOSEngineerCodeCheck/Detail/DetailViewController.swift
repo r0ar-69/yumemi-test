@@ -78,7 +78,7 @@ class DetailViewController: UIViewController {
                         self.imgView.image = img
                     }
                 } else {
-                    print(err)
+                    print(err!)
                 }
             }.resume()
         } else{
