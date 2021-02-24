@@ -96,8 +96,9 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.cell, for: indexPath) as! RepositoryCell
-        let repo:Repo = repositories[indexPath.row]
+        let repo: Repo = repositories[indexPath.row]
         let color = outputGitHubColorCode(language: repo.language)
+        repositories[indexPath.row].gitHubColor = color
         cell.setCell(repo: repo, languageColor: color)
         cell.tag = indexPath.row
         

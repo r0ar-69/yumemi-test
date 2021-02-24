@@ -25,6 +25,7 @@ struct Repo: Codable {
     let forksCount: Int
     let openIssuesCount: Int
     let description: String?
+    var gitHubColor: String?
     
     let owner: Owner
     
@@ -37,16 +38,15 @@ struct Repo: Codable {
         case forksCount = "forks_count"
         case openIssuesCount = "open_issues_count"
         case description
+        case gitHubColor
         case owner
     }
 }
 
 struct Owner: Codable {
     let avatarUrl: String
-    let login: String
     
     private enum CodingKeys: String, CodingKey {
         case avatarUrl = "avatar_url"
-        case login
     }
 }
