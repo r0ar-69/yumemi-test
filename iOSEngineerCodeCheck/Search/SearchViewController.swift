@@ -78,10 +78,8 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         var color = "#F34B7D"
         
         if let lang = language {
-            print(lang)
             let str = lang.remove(characterSet: .whitespaces)
             for child in mirror.children {
-                print(child.label)
                 if child.label?.lowercased() == str.lowercased() {
                     color = child.value as! String
                     return color
