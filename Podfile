@@ -6,6 +6,7 @@ target 'iOSEngineerCodeCheck' do
   use_frameworks!
 
   pod 'R.swift'
+  pod 'SwiftIconFont'
 
   # Pods for iOSEngineerCodeCheck
 

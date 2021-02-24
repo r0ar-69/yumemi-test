@@ -2,19 +2,23 @@ PODS:
   - R.swift (5.3.1):
     - R.swift.Library (~> 5.3.0)
   - R.swift.Library (5.3.0)
+  - SwiftIconFont (6.1.1)
 
 DEPENDENCIES:
   - R.swift
+  - SwiftIconFont
 
 SPEC REPOS:
   trunk:
     - R.swift
     - R.swift.Library
+    - SwiftIconFont
 
 SPEC CHECKSUMS:
   R.swift: 56ec7e3aef34b9eee47a659e42462db2c1cc5ac3
   R.swift.Library: 0fc583cb55a99e28901299cc451614cad1161962
+  SwiftIconFont: 0a772c5ac65a40c9b0675efa37b4928158bd8e43
 
-PODFILE CHECKSUM: 94605e967067f0324a1b7b042c4b07dd86750aff
+PODFILE CHECKSUM: 0fecc7f403fc10021dfb5bc3707062355578cbc7
 
 COCOAPODS: 1.9.1
