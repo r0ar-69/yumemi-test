@@ -40,10 +40,15 @@ class DetailViewController: UIViewController {
             languageLbl.text = language
             languageLbl.textColor = UIColor.hex(string: repo.gitHubColor!, alpha: 1)
         } else {
-            decorationLbl.isHidden = true
-            languageLbl.text = ""
+            decorationLbl.text = "Language is"
+            languageLbl.text = "Not Decided"
         }
-        descriptionLbl.text = repo.description
+        if repo.description != nil{
+            descriptionLbl.text = repo.description
+        } else {
+            descriptionLbl.text = "Descripsion is not exist"
+        }
+        
         starsLbl.text = "\(repo.stargazersCount) stars"
         watchersLbl.text = "\(repo.watchersCount) watchers"
         forksLbl.text = "\(repo.forksCount) forks"
