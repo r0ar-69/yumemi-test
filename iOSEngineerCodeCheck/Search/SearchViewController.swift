@@ -20,8 +20,12 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         super.viewDidLoad()
         
         tableView.register(R.nib.repositoryCell)
-        tableView.rowHeight = 117
         searchBar.delegate = self
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        tableView.estimatedRowHeight = 118.5
+        return UITableView.automaticDimension
     }
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {

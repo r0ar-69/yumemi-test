@@ -24,7 +24,7 @@ class RepositoryCell: UITableViewCell {
     }
     
     func setCell(repo: Repo) {
-        iconLbl.font = UIFont.icon(from: .octicon, ofSize: 19)
+        iconLbl.font = UIFont.icon(from: .octicon, ofSize: 15)
         iconLbl.text = String.fontOcticon("repo")
         starIconLbl.font = UIFont.icon(from: .octicon, ofSize: 16)
         starIconLbl.text = String.fontOcticon("star")
