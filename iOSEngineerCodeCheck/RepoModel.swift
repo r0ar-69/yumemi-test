@@ -25,8 +25,6 @@ struct Repo: Codable {
     let forksCount: Int
     let openIssuesCount: Int
     let description: String?
-    let homepage: String?
-    let htmlUrl: String?
     
     let owner: Owner
     
@@ -39,8 +37,6 @@ struct Repo: Codable {
         case forksCount = "forks_count"
         case openIssuesCount = "open_issues_count"
         case description
-        case homepage
-        case htmlUrl = "html_url"
         case owner
     }
 }
