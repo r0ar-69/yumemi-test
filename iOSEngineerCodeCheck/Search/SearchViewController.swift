@@ -45,8 +45,11 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         
         if searchText.count != 0 {
             if let url = URL(string: "https://api.github.com/search/repositories?q=\(searchText)") {
-                task = URLSession.shared.dataTask(with: url) { (json, res, err) in
-                    if let obj = try? JSONDecoder().decode(Items.self, from: json!){
+                task = URLSession.shared.dataTask(with: url) { (data, res, err) in
+                    guard let json = data else {
+                        return
+                    }
+                    if let obj = try? JSONDecoder().decode(Items.self, from: json){
                         self.repositories = obj.repos
                         DispatchQueue.main.async {
                             self.tableView.reloadData()
@@ -96,7 +99,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.cell, for: indexPath) as! RepositoryCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.cell, for: indexPath)!
         let repo: Repo = repositories[indexPath.row]
         let color = outputGitHubColorCode(language: repo.language)
         repositories[indexPath.row].gitHubColor = color

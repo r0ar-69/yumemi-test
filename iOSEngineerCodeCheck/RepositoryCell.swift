@@ -30,17 +30,15 @@ class RepositoryCell: UITableViewCell {
         starIconLbl.text = String.fontOcticon("star")
         languageIconLbl.font = UIFont.icon(from: .fontAwesome5Solid, ofSize: 10)
         languageIconLbl.text = String.fontAwesome5Icon("circle")
-        
+        fullNameLbl.text = repo.fullName
+        descriptionLbl.text = repo.description
+        starCountLbl.text = String(repo.stargazersCount)
+        languageLbl.text = repo.language
         if repo.language != nil {
             languageIconLbl.textColor = UIColor.hex(string: languageColor, alpha: 1)
         } else {
             languageIconLbl.isHidden = true
         }
-        
-        fullNameLbl.text = repo.fullName
-        descriptionLbl.text = repo.description
-        starCountLbl.text = String(repo.stargazersCount)
-        languageLbl.text = repo.language
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -55,8 +53,8 @@ extension UIColor {
     class func hex ( string : String, alpha : CGFloat) -> UIColor {
         let string_ = string.replacingOccurrences(of: "#", with: "")
         let scanner = Scanner(string: string_ as String)
-        var color: UInt32 = 0
-        if scanner.scanHexInt32(&color) {
+        var color: UInt64 = 0
+        if scanner.scanHexInt64(&color) {
             let r = CGFloat((color & 0xFF0000) >> 16) / 255.0
             let g = CGFloat((color & 0x00FF00) >> 8) / 255.0
             let b = CGFloat(color & 0x0000FF) / 255.0

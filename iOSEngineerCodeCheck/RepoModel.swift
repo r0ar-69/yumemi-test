@@ -50,3 +50,7 @@ struct Owner: Codable {
         case avatarUrl = "avatar_url"
     }
 }
+
+extension Repo {
+    static let template = Repo(name: "temp", fullName: "template", language: "Swift", stargazersCount: 0, watchersCount: 0, forksCount: 0, openIssuesCount: 0, description: nil, gitHubColor: nil, owner: Owner(avatarUrl: "https://avatars.githubusercontent.com/u/9919?v=4"))
+}
