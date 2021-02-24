@@ -30,6 +30,7 @@ class RepositoryCell: UITableViewCell {
         starIconLbl.text = String.fontOcticon("star")
         languageIconLbl.font = UIFont.icon(from: .fontAwesome5Solid, ofSize: 10)
         languageIconLbl.text = String.fontAwesome5Icon("circle")
+        
         if repo.language != nil {
             languageIconLbl.textColor = UIColor.hex(string: languageColor, alpha: 1)
         } else {
