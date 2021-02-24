@@ -26,13 +26,13 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var gitHubLogoLbl: UILabel!
     @IBOutlet weak var gitHubIconLbl: UILabel!
     
-    internal var repository: Repo?
+    internal var repository: Repo = Repo.template
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setup(repo: repository!)
-        getImage(repo: repository!)
+        setup(repo: repository)
+        getImage(repo: repository)
     }
     
     private func setup(repo: Repo) {
