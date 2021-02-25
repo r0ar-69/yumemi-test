@@ -137,6 +137,16 @@
 			path = Detail;
 			sourceTree = "<group>";
 		};
+		24E0826E25E7E2AA0088D6ED /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				24AF2A4A25E55EC1003AA88C /* GitHubColors.json */,
+				24AF2A4F25E5F066003AA88C /* GitHubColorsModel.swift */,
+				24A3F6CA25E359C50055A6E2 /* RepoModel.swift */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		2678495A3CD61DBAE007B4BF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -185,19 +195,17 @@
 		BFD945DD244DC5E80012785A /* iOSEngineerCodeCheck */ = {
 			isa = PBXGroup;
 			children = (
-				24A3F6FE25E3F5080055A6E2 /* Detail */,
-				24A3F6FD25E3F4FE0055A6E2 /* Search */,
 				24AF2A1E25E53504003AA88C /* R.generated.swift */,
 				BFD945DE244DC5E80012785A /* AppDelegate.swift */,
-				24A3F6CA25E359C50055A6E2 /* RepoModel.swift */,
+				2448B69A25E7687500CB2BA4 /* Extensions.swift */,
+				24A3F71925E523A50055A6E2 /* RepositoryCell.swift */,
+				24A3F71A25E523A50055A6E2 /* RepositoryCell.xib */,
+				24E0826E25E7E2AA0088D6ED /* Resource */,
+				24A3F6FE25E3F5080055A6E2 /* Detail */,
+				24A3F6FD25E3F4FE0055A6E2 /* Search */,
 				BFD945E7244DC5EB0012785A /* Assets.xcassets */,
 				BFD945E9244DC5EB0012785A /* LaunchScreen.storyboard */,
 				BFD945EC244DC5EB0012785A /* Info.plist */,
-				24A3F71925E523A50055A6E2 /* RepositoryCell.swift */,
-				24A3F71A25E523A50055A6E2 /* RepositoryCell.xib */,
-				24AF2A4A25E55EC1003AA88C /* GitHubColors.json */,
-				24AF2A4F25E5F066003AA88C /* GitHubColorsModel.swift */,
-				2448B69A25E7687500CB2BA4 /* Extensions.swift */,
 			);
 			path = iOSEngineerCodeCheck;
 			sourceTree = "<group>";
