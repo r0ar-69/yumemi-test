@@ -7,3 +7,25 @@
 //
 
 import Foundation
+
+protocol DetailModelInput {
+    func fetchImage(completion: @escaping (Data) -> ())
+}
+
+final class DetailModel: DetailModelInput {
+    private let repo: Repo!
+    init(repo: Repo) {
+        self.repo = repo
+    }
+
+    func fetchImage(completion: @escaping (Data) -> ()){
+        if let imgURL = URL(string: repo.owner.avatarUrl) {
+            URLSession.shared.dataTask(with: imgURL) { (data, res, err) in
+                guard let imgData = data else { return }
+                completion(imgData)
+            }.resume()
+        } else{
+            print("URL Error!!")
+        }
+    }
+}

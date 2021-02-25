@@ -26,19 +26,23 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var gitHubLogoLbl: UILabel!
     @IBOutlet weak var gitHubIconLbl: UILabel!
     
-    internal var repository: Repo = Repo.template
+    private var presenter: DetailPresenterInput!
+    func inject(presenter: DetailPresenterInput) {
+        self.presenter = presenter
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setup(repo: repository)
-        getImage(repo: repository)
+        setup(repo: presenter.repo)
+        
+        presenter.viewDidLoad()
     }
     
     private func setup(repo: Repo) {
         if let language = repo.language {
             languageLbl.text = language
-            languageLbl.textColor = UIColor.hex(string: repo.gitHubColor!, alpha: 1)
+            languageLbl.textColor = UIColor.hex(string: repo.gitHubColor ?? "#F34B7D", alpha: 1)
         } else {
             decorationLbl.text = "Language is"
             languageLbl.text = "Not Decided"
@@ -66,22 +70,13 @@ class DetailViewController: UIViewController {
         gitHubLogoLbl.font = UIFont.icon(from: .octicon, ofSize: 45)
         gitHubLogoLbl.text = String.fontOcticon("logo-github")
     }
-    
-    private func getImage(repo: Repo){
-        let owner = repo.owner
-        if let imgURL = URL(string: owner.avatarUrl) {
-            URLSession.shared.dataTask(with: imgURL) { (data, res, err) in
-                if (data != nil || (UIImage(data: data!) != nil)) {
-                    let img = UIImage(data: data!)!
-                    DispatchQueue.main.async {
-                        self.imgView.image = img
-                    }
-                } else {
-                    print(err!)
-                }
-            }.resume()
-        } else{
-            print("URL Error!!")
+}
+
+extension DetailViewController: DetailPresenterOutput {
+    func drawImgView(imgData: Data) {
+        guard let img = UIImage(data: imgData) else { return }
+        DispatchQueue.main.async {
+            self.imgView.image = img
         }
     }
 }

@@ -8,124 +8,79 @@
 
 import UIKit
 
-class SearchViewController: UITableViewController, UISearchBarDelegate {
-    @IBOutlet weak var searchBar: UISearchBar!
+final class SearchViewController: UIViewController {
+    @IBOutlet private weak var searchBar: UISearchBar!
+    @IBOutlet private weak var tableView: UITableView!
     
-    var repositories: [Repo] = []
-    var gitHubColors: Any?
-    var task: URLSessionTask?
-    var searchText: String = ""
-    var idx: Int = 0
+    private var presenter: SearchPresenterInput!
+    func inject(presenter: SearchPresenterInput) {
+        self.presenter = presenter
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        pearseGitHubColors()
-        tableView.register(R.nib.repositoryCell)
-        searchBar.delegate = self
+        setup()
+        
+        presenter.viewDidLoad()
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    private func setup() {
         tableView.estimatedRowHeight = 118.5
-        return UITableView.automaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.register(R.nib.repositoryCell)
     }
     
-    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        
-        return true
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        task?.cancel()
-    }
-    
+
+}
+
+extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchText = searchBar.text!
-        searchBar.resignFirstResponder()
-        
-        if searchText.count != 0 {
-            if let url = URL(string: "https://api.github.com/search/repositories?q=\(searchText)") {
-                task = URLSession.shared.dataTask(with: url) { (data, res, err) in
-                    guard let json = data else {
-                        return
-                    }
-                    if let obj = try? JSONDecoder().decode(Items.self, from: json){
-                        self.repositories = obj.repos
-                        DispatchQueue.main.async {
-                            self.tableView.reloadData()
-                        }
-                    }
-                }
-                task?.resume()
-            } else{
-                print("URL Error!!")
-            }
-        }
+        presenter.didTapSearchButton(text: searchBar.text)
     }
     
-    func getJSONData() throws -> Data? {
-        guard let path = R.file.gitHubColorsJson.path() else { return nil }
-        let url = URL(fileURLWithPath: path)
-        
-        return try Data(contentsOf: url)
-    }
-    
-    func pearseGitHubColors(){
-        guard let data = try? getJSONData() else { return }
-        guard let pearsedJSON = try? JSONDecoder().decode(GitHubColors.self, from: data) else { return }
-        
-        gitHubColors = pearsedJSON
-    }
-    
-    func outputGitHubColorCode(language: String?) -> String {
-        let mirror = Mirror(reflecting: gitHubColors!)
-        var color = "#F34B7D"
-        
-        if let lang = language {
-            let str = lang.remove(characterSet: .whitespaces)
-            for child in mirror.children {
-                if child.label?.lowercased() == str.lowercased() {
-                    color = child.value as! String
-                    return color
-                }
-            }
-        }
-        
-        return color
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return repositories.count
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.cell, for: indexPath)!
-        let repo: Repo = repositories[indexPath.row]
-        let color = outputGitHubColorCode(language: repo.language)
-        repositories[indexPath.row].gitHubColor = color
-        cell.setCell(repo: repo, languageColor: color)
-        cell.tag = indexPath.row
-        
-        return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // セルをタップした時に呼ばれる
-        let nextVC = R.storyboard.detail.instantiateInitialViewController()!
-        nextVC.repository = repositories[indexPath.row]
-        self.navigationController?.present(nextVC, animated: true, completion: nil)
-        
+}
+
+extension SearchViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        presenter.didSelectRow(at: indexPath)
     }
 }
 
-extension String {
-    /// StringからCharacterSetを取り除く
-    func remove(characterSet: CharacterSet) -> String {
-        return components(separatedBy: characterSet).joined()
+extension SearchViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return presenter.numberOfRepos
     }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.cell, for: indexPath)!
+        
+        if let repo = presenter.repo(forRow: indexPath.row) {
+            cell.setCell(repo: repo, languageColor: repo.gitHubColor!)
+            
+        }
+        
+        return cell
+    }
+}
 
-    /// StringからCharacterSetを抽出する
-    func extract(characterSet: CharacterSet) -> String {
-        return remove(characterSet: characterSet.inverted)
+extension SearchViewController: SearchPresenterOutput {
+    func updateRepos(_ repos: [Repo]) {
+        tableView.reloadData()
+        //tableView.insertRows(at: [index], with: .fade)
+    }
+    
+    func transitionToDetail(repo: Repo) {
+        let detailVC = R.storyboard.detail.instantiateInitialViewController()!
+        let model = DetailModel(repo: repo)
+        let presenter = DetailPresenter(repo: repo, view: detailVC as DetailPresenterOutput, model: model)
+        detailVC.inject(presenter: presenter)
+        
+        navigationController?.present(detailVC, animated: true, completion: nil)
+    }
+    
+    func closeKeyboard() {
+        searchBar.resignFirstResponder()
     }
 }

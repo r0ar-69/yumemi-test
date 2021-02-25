@@ -40,27 +40,20 @@ class RepositoryCell: UITableViewCell {
             languageIconLbl.isHidden = true
         }
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
     
-}
-
-extension UIColor {
-    class func hex ( string : String, alpha : CGFloat) -> UIColor {
-        let string_ = string.replacingOccurrences(of: "#", with: "")
-        let scanner = Scanner(string: string_ as String)
-        var color: UInt64 = 0
-        if scanner.scanHexInt64(&color) {
-            let r = CGFloat((color & 0xFF0000) >> 16) / 255.0
-            let g = CGFloat((color & 0x00FF00) >> 8) / 255.0
-            let b = CGFloat(color & 0x0000FF) / 255.0
-            return UIColor(red:r,green:g,blue:b,alpha:alpha)
-        } else {
-            return UIColor.white;
+    func outputGitHubColorCode(gitHubColorsMirror: Mirror, language: String?) -> String {
+        var color = "#F34B7D"
+        
+        if let lang = language {
+            let str = lang.remove(characterSet: .whitespaces)
+            for child in gitHubColorsMirror.children {
+                if child.label?.lowercased() == str.lowercased() {
+                    color = child.value as! String
+                    return color
+                }
+            }
         }
+        
+        return color
     }
 }
