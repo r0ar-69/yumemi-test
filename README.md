@@ -53,7 +53,7 @@ MVPアーキテクチャを用いて極力責務を分離した
 
 デザインを変えてより使いやすく、見やすくした
 > GitHubが提供しているicon font "[Octicons](https://octicons-primer.vercel.app/octicons/)" を用いてデザインにアクセントを入れたりしました。
-> また、GitHub で実際に使われている言語を表す色を表示させるために、他の方が作成したJSON ([ここから入手](https://github.com/doda/github-language-colors/blob/master/colors.json))を使用してより本家のデザインに近づけました。
+> また、GitHub で実際に使われている言語を表す色を表示させるために、他の方が作成した[JSON](https://github.com/doda/github-language-colors/blob/master/colors.json))を使用してより本家のデザインに近づけました。
 > 
 
 ## 反省点
