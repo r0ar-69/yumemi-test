@@ -41,6 +41,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchText = searchBar.text!
+        searchBar.resignFirstResponder()
         
         if searchText.count != 0 {
             if let url = URL(string: "https://api.github.com/search/repositories?q=\(searchText)") {
