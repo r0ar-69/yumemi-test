@@ -64,10 +64,10 @@ final class SearchPresenter: SearchPresenterInput {
             for (index, repo) in self!.repos.enumerated() {
                 self!.model.outputGitHubColorCode(gitHubColorsMirror: self!.gitHubColorsMirror!, language: repo.language){ [weak self] color in
                     self!.repos[index].gitHubColor = color ?? "#F34B7D"
-                    DispatchQueue.main.async {
-                        self?.view.updateRepos(self!.repos)
-                    }
                 }
+            }
+            DispatchQueue.main.async {
+                self?.view.updateRepos(self!.repos)
             }
         }
     }
